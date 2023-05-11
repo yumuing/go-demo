@@ -2,4 +2,4 @@
 
 ## 学习路线
 
-![学习路线](C:\code\github\profile\go-demo\README.assets\U7niHfM2T9G58uQ.jpg)
+![学习路线](https://s2.loli.net/2023/05/11/U7niHfM2T9G58uQ.jpg)
