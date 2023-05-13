@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
+	"strings"
 )
 
 // 请求参数结构体
@@ -46,6 +46,13 @@ type DictResponse struct {
 
 func query(word string) {
 	client := &http.Client{}
+	// 判断是否为英文
+	dictionary := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	for _, v := range word {
+		if !strings.Contains(dictionary, string(v)) {
+			log.Fatal("Translation error, please enter English!")
+		}
+	}
 	// 设置请求参数
 	request := DictRequest{TransType: "en2zh", Source: word}
 	buf, err := json.Marshal(request)
@@ -110,12 +117,13 @@ func query(word string) {
 }
 
 func main() {
-	// 运行代码：go run dict.go hello
-	// hello 即为要翻译的文本
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, `usage: simpleDict WORD example: simpleDict hello`)
-		os.Exit(1)
+	fmt.Printf("请输入您想翻译的单词：")
+	var word string
+	_, err := fmt.Scanf("%v", &word)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	word := os.Args[1]
 	query(word)
+	return
 }
