@@ -1,0 +1,33 @@
+
+package main
+ 
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+ 
+func main() {
+	maxNum := 100
+	 // 设置随机数种子
+	rand.Seed(time.Now().UnixNano())
+	secretNumber := rand.Intn(maxNum)
+	fmt.Println("Please input your guess")
+	for {
+		// 采用 fmt.Scanf 则无需额外处理文本 
+		var guess int _, err := fmt.Scanf("%d\n", &guess)
+		if err != nil {
+			fmt.Println("Invalid input. Please enter an integer value")
+			continue
+		}
+		fmt.Println("You guess is", guess)
+		if guess > secretNumber {
+			fmt.Println("Your guess is bigger than the secret number. Please try again")
+		} else if guess < secretNumber {
+			fmt.Println("Your guess is smaller than the secret number. Please try again")
+		} else {
+			fmt.Println("Correct, you Legend!")
+			break
+		}
+	}
+}

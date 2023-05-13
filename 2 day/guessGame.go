@@ -31,7 +31,7 @@ func main() {
 		}
 		// windows 需要修改换行符
 		input = strings.Trim(input, "\r\n")
-		// 利用 string 方法去除换行符，方便后续转化为数字，以及判断正确与否
+		// 利用 string 方法转化为数字
 		guess, err := strconv.Atoi(input)
 		if err != nil {
 			fmt.Println("Invalid input. Please enter an integer value")
